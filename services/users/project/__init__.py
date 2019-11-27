@@ -4,7 +4,6 @@ from flask import Flask, jsonify
 from database import db
 from project.api.users import users_blueprint
 
-from project.api import models
 
 def create_app(script_info=None):
     # instantiate the app
@@ -19,6 +18,10 @@ def create_app(script_info=None):
     # register blueprints
     app.register_blueprint(users_blueprint)
 
+    from project.api import models
+    from project.api import views
+
+    
     # shell context for flask cli(used to register app and db to the shell)
     # now you can work with the application context and database without having
     # to import them directly into the shell

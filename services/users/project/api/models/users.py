@@ -5,6 +5,7 @@ from database import db
 class User(db.Model):
     """Creates users table"""
     __tablename__ = "users"
+
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(128), nullable=False)
@@ -13,3 +14,20 @@ class User(db.Model):
     def __init__(self, username, email):
         self.username = username
         self.email = email
+
+    def save(self):
+        """Persist data into the database
+        Returns:
+            instance(obj): model instance
+        """
+        db.session.add(self)
+        db.session.commit()
+        return self
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'active': self.active
+        }
