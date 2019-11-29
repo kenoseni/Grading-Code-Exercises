@@ -5,15 +5,13 @@ services:
     container_name: users
     build:
       context: ./services/users
-      dockerfile: Dockerfile-dev
-    volumes: 
-      - './services/users:/usr/src/app'
-    ports:
-      - 5001:5000
+      dockerfile: Dockerfile-prod
+    expose:
+      - '5000'
     environment:
       - FLASK_DEBUG=1
-      - APP_SETTINGS=project.config.DevelopmentConfig
-      - DATABASE_URL=postgres://postgres:Iimpeccable1@users-db/users_dev
+      - APP_SETTINGS=project.config.ProductionConfig
+      - DATABASE_URL=postgres://postgres:Iimpeccable1@users-db/users_prod
       - DATABASE_TEST_URL=postgres://postgres:Iimpeccable1@users-db/users_test
       - SECRET_KEY=for your eyes only
     depends_on:
@@ -31,7 +29,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Iimpeccable1
-  
+
   nginx:
     container_name: nginx
     build: ./services/nginx
