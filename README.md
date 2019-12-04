@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/kenoseni/Grading-Code-Exercises.svg?branch=master)](https://travis-ci.org/kenoseni/Grading-Code-Exercises)
-
 # Grading-Code-Exercise
+
+[![Build Status](https://travis-ci.org/kenoseni/Grading-Code-Exercises.svg?branch=master)](https://travis-ci.org/kenoseni/Grading-Code-Exercises)
 
 A platform where users can take coding challenges and be graded
 
