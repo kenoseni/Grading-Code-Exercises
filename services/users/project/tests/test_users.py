@@ -1,7 +1,7 @@
 # services/users/project/tests/test_users.py
 
-import json, unittest
-from database import db
+import unittest
+import json
 from project.api.models import User
 
 from project.tests.base import BaseTestCase
@@ -35,9 +35,10 @@ class TestUserService(BaseTestCase):
             self.assertIn('success', data['status'])
 
     def test_add_user_invalid_json(self):
-        """Ensure error is thrown if the JSON object is empty""" 
+        """Ensure error is thrown if the JSON object is empty"""
         with self.client:
-            response = self.client.post( '/users',
+            response = self.client.post(
+                '/users',
                 data=json.dumps({}),
                 content_type='application/json'
             )
@@ -47,7 +48,8 @@ class TestUserService(BaseTestCase):
             self.assertIn('fail', data['status'])
 
     def test_add_user_invalid_json_keys(self):
-        """Ensure error is thrown if the JSON object does not have a username key"""
+        """Ensure error is thrown if the JSON object
+        does not have a username key"""
         with self.client:
             response = self.client.post(
                 '/users',
@@ -60,12 +62,12 @@ class TestUserService(BaseTestCase):
             self.assertIn('fail', data['status'])
 
     def test_add_user_duplicate_email(self):
-        """Ensure error is thrown if the email already exists""" 
+        """Ensure error is thrown if the email already exists"""
         with self.client:
-            self.client.post( 
+            self.client.post(
                 '/users',
                 data=json.dumps({
-                    'username': 'michael', 
+                    'username': 'michael',
                     'email': 'michael@whoknows.org'
                 }),
                 content_type='application/json'
@@ -78,7 +80,7 @@ class TestUserService(BaseTestCase):
                 }),
                 content_type='application/json'
             )
-            data = json.loads(response.data.decode()) 
+            data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 400)
             self.assertIn('Sorry. That email already exists.', data['message'])
             self.assertIn('fail', data['status'])
@@ -96,17 +98,19 @@ class TestUserService(BaseTestCase):
 
     def test_all_user(self):
         """Ensure get all users behaves correctly"""
-        user_1 = User(username='michael', email='michael@whoknows.org').save()
-        user_2 = User(username='jackson', email='jackson@whoknows.org').save()
+        User(username='michael', email='michael@whoknows.org').save()
+        User(username='jackson', email='jackson@whoknows.org').save()
         with self.client:
             response = self.client.get('/users')
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 200)
             self.assertEqual(len(data['data']['users']), 2)
             self.assertIn('michael', data['data']['users'][0]['username'])
-            self.assertIn('michael@whoknows.org', data['data']['users'][0]['email'])
+            self.assertIn(
+                'michael@whoknows.org', data['data']['users'][0]['email'])
             self.assertIn('jackson', data['data']['users'][1]['username'])
-            self.assertIn('jackson@whoknows.org', data['data']['users'][1]['email'])
+            self.assertIn(
+                'jackson@whoknows.org', data['data']['users'][1]['email'])
             self.assertIn('success', data['status'])
 
     def test_main_no_users(self):

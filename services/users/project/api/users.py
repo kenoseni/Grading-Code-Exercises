@@ -4,12 +4,14 @@ from project.api.models import User
 
 users_blueprint = Blueprint('users', __name__, template_folder='./templates')
 
+
 @users_blueprint.route('/users/ping')
 def ping_pong():
     return jsonify({
         'status': 'success',
         'message': 'pong'
     })
+
 
 @users_blueprint.route('/', methods=['GET', 'POST'])
 def index():

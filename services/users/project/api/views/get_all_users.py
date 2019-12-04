@@ -1,8 +1,7 @@
-from sqlalchemy import exc
 from project.api.users import users_blueprint
-from flask import Blueprint, jsonify, request
+from flask import jsonify
 from project.api.models import User
-from database import db
+
 
 @users_blueprint.route('/users', methods=['GET'])
 def get_all_user():
