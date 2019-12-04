@@ -1,8 +1,12 @@
 import os
 from flask import Flask
+from flask_debugtoolbar import DebugToolbarExtension
 
 from database import db
 from project.api.users import users_blueprint
+
+# instantiate extention
+toolbar = DebugToolbarExtension()
 
 
 def create_app(script_info=None):
@@ -14,6 +18,9 @@ def create_app(script_info=None):
 
     # initialize db by binding app
     db.init_app(app)
+
+    # set up extention
+    toolbar.init_app(app)
 
     # register blueprints
     app.register_blueprint(users_blueprint)

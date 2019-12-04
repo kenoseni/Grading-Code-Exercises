@@ -1,8 +1,10 @@
 -i https://pypi.org/simple
+blinker==1.4
 click==7.0
 coverage==4.5.4
 entrypoints==0.3
 flake8==3.7.9
+flask-debugtoolbar==0.10.1
 flask-sqlalchemy==2.4.1
 flask-testing==0.7.1
 flask==1.1.1

@@ -14,6 +14,7 @@ flask-testing = "*"
 gunicorn = "*"
 coverage = "*"
 flake8 = "*"
+flask-debugtoolbar = "*"
 
 [requires]
 python_version = "3.8"
