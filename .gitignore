@@ -2,3 +2,5 @@
 __pycache__
 DS_Store
 htmlcov
+node_modules
+__snapshots__

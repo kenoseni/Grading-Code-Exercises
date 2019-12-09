@@ -15,6 +15,7 @@ gunicorn = "*"
 coverage = "*"
 flake8 = "*"
 flask-debugtoolbar = "*"
+flask-cors = "*"
 
 [requires]
 python_version = "3.8"
