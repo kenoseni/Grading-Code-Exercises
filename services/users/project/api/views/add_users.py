@@ -19,7 +19,9 @@ def add_user():
                 'status': 'success',
                 'message': f'{email} was added!',
                 'data': {
-                    'id': new_user.id
+                    'id': new_user.id,
+                    'username': new_user.username,
+                    'email': new_user.email
                 }
             }
             return jsonify(response_object), 201
