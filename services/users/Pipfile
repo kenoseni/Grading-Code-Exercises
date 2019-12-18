@@ -16,6 +16,9 @@ coverage = "*"
 flake8 = "*"
 flask-debugtoolbar = "*"
 flask-cors = "*"
+flask-migrate = "*"
+flask-bcrypt = "*"
+pyjwt = "*"
 
 [requires]
 python_version = "3.8"
