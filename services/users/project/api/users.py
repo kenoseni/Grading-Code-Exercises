@@ -18,6 +18,8 @@ def index():
     if request.method == 'POST':
         username = request.form['username']
         email = request.form['email']
-        User(username=username, email=email).save()
+        password = request.form['password']
+        User(
+            username=username, email=email, password=password).save()
     users = User.query.all()
     return render_template('index.html', users=users)

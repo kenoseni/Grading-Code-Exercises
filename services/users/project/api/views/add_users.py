@@ -10,11 +10,13 @@ def add_user():
     post_data = request.get_json()
     username = post_data.get('username')
     email = post_data.get('email')
+    password = post_data.get('password')
 
     try:
         user = User.query.filter_by(email=email).first()
         if not user:
-            new_user = User(username=username, email=email).save()
+            new_user = User(
+                username=username, email=email, password=password).save()
             response_object = {
                 'status': 'success',
                 'message': f'{email} was added!',
@@ -31,7 +33,7 @@ def add_user():
                 'message': 'Sorry. That email already exists.'
             }
             return jsonify(response_object), 400
-    except exc.IntegrityError:
+    except (exc.IntegrityError, ValueError):
         db.session.rollback()
         return {
             'status': 'fail',

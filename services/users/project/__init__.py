@@ -3,6 +3,7 @@ from flask import Flask
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_cors import CORS
 from flask_migrate import Migrate
+from flask_bcrypt import Bcrypt
 
 from database import db
 from project.api.users import users_blueprint
@@ -10,7 +11,7 @@ from project.api.users import users_blueprint
 # instantiate extention
 toolbar = DebugToolbarExtension()
 migrate = Migrate()
-
+bcrypt = Bcrypt()
 
 
 def create_app(script_info=None):
@@ -30,6 +31,7 @@ def create_app(script_info=None):
     # set up extention
     toolbar.init_app(app)
     migrate.init_app(app, db)
+    bcrypt.init_app(app)
 
     # register blueprints
     app.register_blueprint(users_blueprint)

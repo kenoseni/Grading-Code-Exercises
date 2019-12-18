@@ -3,6 +3,7 @@
 import unittest
 import json
 from project.api.models import User
+from project.tests.utils import add_user
 
 from project.tests.base import BaseTestCase
 
@@ -25,7 +26,8 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'michael',
-                    'email': 'michael@whoknows.org'
+                    'email': 'michael@whoknows.org',
+                    'password': 'mickky'
                 }),
                 content_type='application/json'
             )
@@ -68,7 +70,8 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'michael',
-                    'email': 'michael@whoknows.org'
+                    'email': 'michael@whoknows.org',
+                    'password': 'mickky4'
                 }),
                 content_type='application/json'
             )
@@ -76,7 +79,8 @@ class TestUserService(BaseTestCase):
                 '/users',
                 data=json.dumps({
                     'username': 'michael',
-                    'email': 'michael@whoknows.org'
+                    'email': 'michael@whoknows.org',
+                    'password': 'mickky5'
                 }),
                 content_type='application/json'
             )
@@ -87,7 +91,7 @@ class TestUserService(BaseTestCase):
 
     def test_single_user(self):
         """Ensure get single user behaves correctly"""
-        user = User(username='michael', email='michael@whoknows.org').save()
+        user = add_user('michael', 'michael@whoknows.org', 'mickky7')
         with self.client:
             response = self.client.get(f'/users/{user.id}')
             data = json.loads(response.data.decode())
@@ -98,8 +102,8 @@ class TestUserService(BaseTestCase):
 
     def test_all_user(self):
         """Ensure get all users behaves correctly"""
-        User(username='michael', email='michael@whoknows.org').save()
-        User(username='jackson', email='jackson@whoknows.org').save()
+        add_user('michael', 'michael@whoknows.org', 'mickky9')
+        add_user('jackson', 'jackson@whoknows.org', 'jakky')
         with self.client:
             response = self.client.get('/users')
             data = json.loads(response.data.decode())
@@ -123,8 +127,14 @@ class TestUserService(BaseTestCase):
     def test_main_with_users(self):
         """Ensures the mail route behaves correctly when no users have been
         added to the database"""
-        User(username='michael', email='michael@whoknows.org').save()
-        User(username='jackson', email='jackson@whoknows.org').save()
+        User(
+            username='michael',
+            email='michael@whoknows.org',
+            password='babajide').save()
+        User(
+            username='jackson',
+            email='jackson@whoknows.org',
+            password='babajide2').save()
         with self.client:
             response = self.client.get('/')
             self.assertEqual(response.status_code, 200)
@@ -138,7 +148,7 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 '/',
-                data=dict(username='gbenga', email='gbenga@gmail.com'),
+                data=dict(username='gbenga', email='gbenga@gmail.com', password='gbengs'),
                 follow_redirects=True
             )
             self.assertEqual(response.status_code, 200)
