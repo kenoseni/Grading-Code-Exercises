@@ -49,8 +49,8 @@ services:
     build:
       context: ./services/client
       dockerfile: Dockerfile-dev
-    env_file:
-     - ./services/client/.env
+    # env_file:
+    #  - ./services/client/.env
     volumes:
       - './services/client:/usr/src/app'
       - '/usr/src/app/node_modules'
@@ -59,7 +59,7 @@ services:
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
-      # - REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}
+      - REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}
     depends_on:
       - users
     links:
