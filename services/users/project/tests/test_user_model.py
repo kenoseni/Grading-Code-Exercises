@@ -51,9 +51,18 @@ class TestUsermodel(BaseTestCase):
 
     def test_to_json(self):
         """test to_json in model"""
-        user = User(
-            username='parker',
-            email='parker@gmail.com',
-            password='parking'
-        ).save()
+        user = add_user('parker', 'parker@gmail.com', 'parking').save()
         self.assertTrue(isinstance(user.to_json(), dict))
+
+    def test_encode_auth_token(self):
+        """"""
+        user = add_user('parker', 'parker@gmail.com', 'immaculate')
+        auth_token = user.encode_auth_token(user.id)
+        self.assertTrue(isinstance(auth_token, bytes))
+
+    def test_decode_auth_token(self):
+        """"""
+        user = add_user('parker', 'parker@gmail.com', 'parking')
+        auth_token = user.encode_auth_token(user.id)
+        self.assertTrue(isinstance(auth_token, bytes))
+        self.assertEqual(User.decode_auth_token(auth_token), user.id)

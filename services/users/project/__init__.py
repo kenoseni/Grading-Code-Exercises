@@ -7,6 +7,7 @@ from flask_bcrypt import Bcrypt
 
 from database import db
 from project.api.users import users_blueprint
+from project.api.auth.auth import auth_blueprint
 
 # instantiate extention
 toolbar = DebugToolbarExtension()
@@ -35,6 +36,7 @@ def create_app(script_info=None):
 
     # register blueprints
     app.register_blueprint(users_blueprint)
+    app.register_blueprint(auth_blueprint)
 
     from project.api import models
     from project.api import views
