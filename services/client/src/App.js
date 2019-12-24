@@ -1,13 +1,11 @@
 import React from 'react';
 import './App.css';
-import Users from './components/Users'
-import AddUser from './components/AddUser';
+import AppRouter from './routes/AppRouter';
 
 function App() {
   return (
     <div className="App">
-      <AddUser />
-      <Users />
+      <AppRouter />
     </div>
   );
 }

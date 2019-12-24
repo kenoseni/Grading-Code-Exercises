@@ -23,7 +23,7 @@ function AddUser() {
     }
     return (
         <form onSubmit={handleSubmit}>
-            <div className="form-group col-md-6">
+            <div className="form-group">
                 <label htmlFor="InputUsername">Username</label>
                 <input
                     value={formDetails.username}
@@ -37,7 +37,7 @@ function AddUser() {
                     required
                 />
             </div>
-            <div className="form-group col-md-6">
+            <div className="form-group">
                 <label htmlFor="InputEmail1">Email address</label>
                 <input
                     value={formDetails.email}

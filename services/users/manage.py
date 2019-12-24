@@ -56,8 +56,8 @@ def test():
 @cli.command()
 def seed_db():
     """Seeds the database"""
-    User(username='olusola', email='olusola@gmail.com').save()
-    User(username='ezekiel', email='ezekiel@gmail.com').save()
+    User(username='olusola', email='olusola@gmail.com', password='whocares').save()
+    User(username='ezekiel', email='ezekiel@gmail.com', password='whocares').save()
 
 
 if __name__ == "__main__":
