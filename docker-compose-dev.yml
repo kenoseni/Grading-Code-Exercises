@@ -64,4 +64,3 @@ services:
       - users
     links:
       - users
-

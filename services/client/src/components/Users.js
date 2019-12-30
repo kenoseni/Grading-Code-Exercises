@@ -14,12 +14,13 @@ function Users() {
 	}, [])
 	const userList = users.map((user) => <UserList user={user} key={user.id}/>)
 	return (
+		<React.Fragment>
 			<div className="container">
 				<div className="row">
 					<div className="col-md-4">
 						<br />
-           				 <h1>All users</h1>
-            			<hr /><br />
+							<h1>All users</h1>
+						<hr /><br />
 						<AddUser />
 						<br />
 							{userList}
@@ -27,6 +28,7 @@ function Users() {
 					</div>
 				</div>		
 			</div>
+		</React.Fragment>
 	)
 }
 export default Users

@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: none;
 }
 
 .App-logo {
@@ -35,4 +35,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+.nav-item {
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  font-size: small;
 }
