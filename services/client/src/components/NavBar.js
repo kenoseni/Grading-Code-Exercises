@@ -21,28 +21,40 @@ const NavBar = (props) => (
                         About
                     </Nav.Item>
                 </LinkContainer>
-                <LinkContainer to="/status">
-                    <Nav.Item>
-                        User Status
-                    </Nav.Item>
-                </LinkContainer>
+                {
+                    props.isAuthenticated &&
+                    <LinkContainer to="/status">
+                        <Nav.Item>
+                            User Status
+                        </Nav.Item>
+                    </LinkContainer>
+                }
             </Nav>
             <Nav>
-                <LinkContainer to="/register">
-                    <Nav.Item>
-                        Register
-                    </Nav.Item>
-                </LinkContainer>
-                <LinkContainer to="/login">
-                    <Nav.Item>
-                        Log In
-                    </Nav.Item>
-                </LinkContainer>
-                <LinkContainer to="/logout">
-                    <Nav.Item>
-                        Log Out
-                    </Nav.Item>
-                </LinkContainer>
+                {
+                    !props.isAuthenticated &&
+                    <LinkContainer to="/register">
+                        <Nav.Item>
+                            Register
+                        </Nav.Item>
+                    </LinkContainer>
+                }
+                {
+                    !props.isAuthenticated &&
+                    <LinkContainer to="/login">
+                        <Nav.Item>
+                            Log In
+                        </Nav.Item>
+                    </LinkContainer>
+                }
+                {
+                    props.isAuthenticated &&
+                    <LinkContainer to="/logout">
+                        <Nav.Item>
+                            Log Out
+                        </Nav.Item>
+                    </LinkContainer>
+                }
             </Nav>
         </Navbar.Collapse>
     </Navbar>

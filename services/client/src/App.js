@@ -52,7 +52,8 @@ function App() {
   return (
     <div className="App">
       <NavBar
-				title={title}
+        title={title}
+        isAuthenticated={authentication.isAuthenticated}
 			/>
       <AppRouter formData={formData}
         handleUserFormSubmit={handleUserFormSubmit}

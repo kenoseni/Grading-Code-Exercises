@@ -4,6 +4,7 @@ import About from '../components/About'
 import Users from '../components/Users'
 import Form from '../components/Form'
 import Logout from '../components/Logout'
+import UserStatus from '../components/UserStatus'
 
 
 const AppRouter = (props) => {
@@ -11,6 +12,11 @@ const AppRouter = (props) => {
         <Switch>
             <Route exact path='/' component={Users} />
             <Route exact path='/about' component={About} />
+            <Route exact path='/status' render={() => (
+                <UserStatus
+                isAuthenticated={props.isAuthenticated}
+                />
+            )} />
             <Route exact path='/register' render={() => (
                 <Form
                     formType={'Register'}
