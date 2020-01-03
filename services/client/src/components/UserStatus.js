@@ -7,7 +7,9 @@ const UserStatus = (props) => {
     const [userDetail, setUserDetail] = useState({
         email: '',
         id: '',
-        username: ''
+        username: '',
+        active: '',
+        admin: ''
     })
     useEffect(() => {
         const fetchStatus = async() => {
@@ -24,7 +26,9 @@ const UserStatus = (props) => {
                 setUserDetail({
                     email: res.data.data.email,
                     id: res.data.data.id,
-                    username: res.data.data.username
+                    username: res.data.data.username,
+                    active: String(res.data.data.active),
+                    admin: String(res.data.data.admin)
                 })
             }
             catch (error) {
@@ -49,6 +53,8 @@ const UserStatus = (props) => {
                 <li><strong>User ID:</strong>{userDetail.id}</li>
                 <li><strong>Email:</strong>{userDetail.email}</li>
                 <li><strong>Username:</strong>{userDetail.username}</li>
+                <li><strong>Active:</strong>{userDetail.active}</li>
+                <li><strong>Admin:</strong>{userDetail.admin}</li>
             </ul>
         </div>
     )

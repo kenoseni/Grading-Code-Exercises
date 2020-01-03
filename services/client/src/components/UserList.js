@@ -1,11 +1,10 @@
 import React from 'react'
+import CustomTable from './CustomTable'
 
-function User({user}) {
+function UserList(props) {
     return (
-        <h4 className="card card-body bg-light">
-            {user.username}
-        </h4>
+        <CustomTable users={props.users}/>
     )
 }
 
-export default User
+export default UserList

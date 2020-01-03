@@ -2,7 +2,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
 
-import UserList from '../components/UserList'
+import CustomTable from '../components/CustomTable'
 
 const users = [
     {   
@@ -22,13 +22,15 @@ const users = [
 ]
     
 
-test('should render UserList properly', () => {
-    const wrapper = shallow(<UserList users={users}/>)
+test('should render CustomTable properly', () => {
+    const wrapper = shallow(<CustomTable users={users}/>)
+    const table = wrapper.find('tbody')
+    expect(table.length).toBe(1)
 
 })
 
 // snapshot testing
 test('renders a snapshot properly', () => {
-    const tree = renderer.create(<UserList users={users}/>).toJSON()
+    const tree = renderer.create(<CustomTable users={users}/>).toJSON()
     expect(tree).toMatchSnapshot()
 })
