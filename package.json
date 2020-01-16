@@ -1,0 +1,9 @@
+{
+    "name": "test-driven",
+    "scripts": {
+        "test": "testcafe firefox e2e/index.test.js"
+    },
+    "devDependencies": {
+        "testcafe": "^1.7.1"
+    }
+}

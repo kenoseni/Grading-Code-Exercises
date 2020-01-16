@@ -12,6 +12,10 @@ def ping_pong():
         'message': 'pong'
     })
 
+@users_blueprint.route('/debug-sentry')
+def trigger_error():
+    division_by_zero = 1 / 0
+
 
 @users_blueprint.route('/', methods=['GET', 'POST'])
 def index():

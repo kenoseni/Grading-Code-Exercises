@@ -4,6 +4,8 @@ from flask_debugtoolbar import DebugToolbarExtension
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
 
 from database import db
 from project.api.users import users_blueprint
@@ -16,6 +18,12 @@ bcrypt = Bcrypt()
 
 
 def create_app(script_info=None):
+    
+    sentry_sdk.init(
+    dsn="https://e5c909cdd76348008b176ad5945be634@sentry.io/1885551",
+    integrations=[FlaskIntegration()]
+)
+
     # instantiate the app
     app = Flask(__name__)
 

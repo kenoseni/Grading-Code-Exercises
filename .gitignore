@@ -1,6 +1,8 @@
 .env
+.editorconfig
 __pycache__
 DS_Store
 htmlcov
 node_modules
+htmlcov
 __snapshots__

@@ -19,6 +19,7 @@ flask-cors = "*"
 flask-migrate = "*"
 flask-bcrypt = "*"
 pyjwt = "*"
+sentry-sdk = {extras = ["flask"],version = "==0.14.0"}
 
 [requires]
 python_version = "3.8"
